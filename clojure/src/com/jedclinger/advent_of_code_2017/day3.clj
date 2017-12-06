@@ -1,4 +1,4 @@
-(ns com.jedclinger.advent-of-code-2017.day2
+(ns com.jedclinger.advent-of-code-2017.day3
   (:require [clojure.java.io :as io]
             [clojure.string :as string]))
 
