@@ -8,20 +8,13 @@
   instruction using the provided update-instruction function to update
   each instruction along the way"
   [update-instruction [instructions n]]
-  (let [instruction (nth instructions n)
+  (let [instruction (get instructions n)
         next-n (+ n instruction)]
     [(update instructions n update-instruction) next-n]))
 
 (defn done?
   [[instructions n]]
   (or (< n 0) (>= n (count instructions))))
-
-(defn take-until
-  "Like drop-while but includes the first element that pred returns
-  logical true for"
-  [pred coll]
-  (let [[results others] (split-with (complement pred) coll)]
-    (concat results [(first others)])))
 
 (defn process-instructions
   [instructions & [f]]
@@ -35,10 +28,13 @@
   (def input (string/trim (slurp (io/resource "day5.txt"))))
   (def instructions (mapv #(Integer/parseInt %) (string/split-lines input)))
 
+  (count instructions)
+
   ;; part 1
   (count (process-instructions instructions))
 
   ;; part 2
   (defn inc-or-dec [n] (if (>= n 3) (dec n) (inc n)))
-  (count (process-instructions instructions inc-or-dec))
+  (time (count (process-instructions instructions inc-or-dec))) ;30 seconds!
+
   )
