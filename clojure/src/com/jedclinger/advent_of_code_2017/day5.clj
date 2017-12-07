@@ -1,4 +1,4 @@
-(ns com.jedclinger.advent-of-code-2017.day4
+(ns com.jedclinger.advent-of-code-2017.day5
   (:require [clojure.java.io :as io]
             [clojure.string :as string]))
 
@@ -12,12 +12,10 @@
         next-n (+ n instruction)]
     [(update instructions n update-instruction) next-n]))
 
-(defn done?
-  [[instructions n]]
+(defn done? [[instructions n]]
   (or (< n 0) (>= n (count instructions))))
 
-(defn process-instructions
-  [instructions & [f]]
+(defn process-instructions [instructions & [f]]
   (take-while (complement done?)
               (iterate (partial process (or f inc)) [instructions 0])))
 
