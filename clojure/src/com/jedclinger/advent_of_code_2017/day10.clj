@@ -1,8 +1,6 @@
 (ns com.jedclinger.advent-of-code-2017.day10
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]
-            [clojure.spec.alpha :as s]
-            [clojure.pprint :refer [pprint]]))
+            [clojure.string :as str]))
 
 (defn twist [list pos skip length]
   (let [n (count list)
