@@ -15,8 +15,7 @@
 
 (defn find-root [programs]
   (first
-   (reduce (fn [candidates p]
-             (set/difference candidates (:children p)))
+   (reduce (fn [candidates p] (set/difference candidates (:children p)))
            (set (map :name programs))
            programs)))
 
